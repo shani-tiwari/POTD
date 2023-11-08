@@ -1,0 +1,66 @@
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SnakePattern {
+
+    public static void main(String args[]) throws IOException
+    {
+        Scanner sc = new Scanner(System.in);
+        //int t = sc.nextInt();
+        
+        // while(t-- > 0)
+        // {
+            System.out.println(" Enter Size of Matrix : ");
+            int n = sc.nextInt();
+            int matrix[][] = new int[n][n];
+            
+            System.out.println(" Enter Elements : ");
+            for(int i = 0; i < n; i++)
+            {
+                for(int j = 0; j < n; j++)
+                 matrix[i][j] = sc.nextInt();
+            }
+            
+            Solution ob = new Solution();  // classtype object
+            ArrayList<Integer> ans = ob.snakePattern(matrix, n);
+            System.out.println("soution : ");
+            for (Integer val: ans) 
+                System.out.print(val+" "); 
+                System.out.println();
+       // }
+            sc.close();
+    }
+}
+// } Driver Code Ends
+
+
+    class Solution
+    {
+        //Function to return list of integers visited in snake pattern in matrix.
+           ArrayList<Integer> snakePattern(int matrix[][])
+        {
+                ArrayList<Integer> al = new ArrayList<>();
+                int m = matrix.length;
+                System.out.println(" length of matrix : " + m);
+                for (int i = 0; i < m; i++) {
+           
+                    if ( i % 2 == 0) {
+                        // values will read normally.
+                            for(int j = 0; j < m; j++){
+                               al.add(matrix[i][j] );
+                            }
+                    }
+
+                    else{
+                        // valuer will read in opposite direction. 
+                            for(int j = m-1; j >= 0; j--){  // -1 is for index ,
+                            al.add(matrix[i][j] );
+                            }
+                    }
+
+                }
+                return al;
+        }
+    }
+        
