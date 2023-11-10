@@ -1,0 +1,63 @@
+import java.io.*;
+
+public class NumberFollowingPattern {
+
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        //int t = Integer.parseInt(read.readLine());
+        // while(t-- > 0)
+        // {
+            String S = read.readLine();
+            Solution ob = new Solution();
+            System.out.println(ob.printMinNumberForPattern(S));
+        //}
+    }
+}
+
+class Solution{
+          String printMinNumberForPattern(String S){
+                // it's for c++. so don.t working, 
+            //     String res = "";
+            //     Stack<Integer> st = new Stack<Integer>();
+            // for (int i = 0; i < S.length(); i++) {
+            //          st.push(i+1);
+            //          if (S.charAt(i) == 'I' || i == S.length()) {
+            //                 while (!st.empty()) {
+            //                     ans += toString(st.pop(i));
+            //                     st.pop();
+            //                 }
+            //          }
+
+            // }
+            // return ans;
+            // second approach
+            // maintain two min = 1, max = S.length+1,   everytime when 'I', place min in place of this and increase min++, at 'D' same with max--.
+                // fails in some test cases. 
+            
+                // third approach
+                int l = S.length();
+                int count = 1;
+                char [] res = new char[ l+1 ];
+                for (int i = 0; i <= l; i++) {
+
+                    // if length were 0 or char were I , when we have a string bigger than 0, then loop works on every I it found's
+                    if (i == l || S.charAt(i) == 'I') {  // don't  use - "I"
+
+                            for (int j = i-1; j >= -1; j--) {
+                                    // for ever 'I' it'll start from 1 and so on like(2, 3, 4, 5. upto 9)
+                                    res[j+1] = (char) ('0' + count);
+                                    // increase after placing value of 'I'.
+                                    count++;
+                                        // break when "I" is found
+                                    if ( j >= 0 && S.charAt(j) == 'I') {
+                                            break;
+                                    }
+                            }
+                    }
+                }
+
+                return new String(res);
+    }
+}
+
