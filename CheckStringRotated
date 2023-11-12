@@ -1,0 +1,54 @@
+import java.util.*;
+// import java.lang.*;
+// import java.io.*;
+
+//Given two strings a and b. The task is to find if the string 'b' can be obtained by rotating (in any direction) string 'a' by exactly 2 places.
+public class ChkStringRotate {
+
+    
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int t;
+		t = sc.nextInt();
+  // String s12 = sc.nextLine();
+		for(int i=0; i<t; i++){
+		    String s1 = sc.nextLine();
+		    String s2 = sc.nextLine();
+		    
+		    Solution obj = new Solution();
+		    
+		    boolean flag = obj.isRotated(s1, s2);
+		    
+		    if(flag == true) System.out.println("1");
+		    else System.out.println("0");
+		    
+		}
+	}
+}
+
+
+
+class Solution
+{
+    public static boolean isRotated(String str1, String str2)
+    {
+            if(str1.length()!=str2.length()){
+                return false;
+            }
+            
+            String s=str1+str1;
+            
+            //anticlockwise
+            String s1=s.substring(2, str1.length()+2);
+            // clockwise 
+            String s2=s.substring(str1.length()-2, s.length()-2);
+            
+            if(str2.equals(s1) || str2.equals(s2)){
+                return true;
+            }
+            
+            
+            return false;
+    }
+    
+}
